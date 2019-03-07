@@ -6,9 +6,9 @@ pipeline {
   containerId = sh(script: 'docker ps -aqf "name=chat-app"', returnStdout: true)
  }
  agent any
- /*tools {
-  nodejs "node"
- }*/
+ tools {
+  maven 'maven'
+ }
 
  stages {
 
