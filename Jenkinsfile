@@ -1,6 +1,6 @@
 pipeline {
  environment {
-  registry = 'venkatadri/dokerzied_springboot_pipelin'
+  registry = 'venkatadri/dokerzied_springboot_pipeline'
   registryCredential = 'dockerhub'
   dockerImage = ''
   containerId = sh(script: 'docker ps -aqf "name=chat-app"', returnStdout: true)
