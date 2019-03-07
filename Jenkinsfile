@@ -27,6 +27,11 @@ pipeline {
     }
    }
   }
+  stage('StaticCode Analysis') {
+   steps {
+    sh "mvn sonar:sonar sonar.projectKey:chat-app"
+   }
+  }
 
   stage('cleanup') {
    steps {
