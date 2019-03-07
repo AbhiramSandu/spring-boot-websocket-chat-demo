@@ -17,19 +17,20 @@ pipeline {
     sh 'mvn clean package'
    }
   }
-  /*stage('Test') {
+  stage('Test') {
    steps {
     sh 'mvn Test  '
    }
-  }*/
+  }
 
-  stage('cleanup') {
+ /* stage('cleanup') {
    steps {
+    
     sh 'docker stop chat-app'
     sh 'docker rm chat-app'
     //sh 'docker rmi -f $registry'
    }
-  }
+  }*/
   stage('Building image') {
    steps {
     script {
