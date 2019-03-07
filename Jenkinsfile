@@ -17,11 +17,11 @@ pipeline {
     sh 'mvn clean package'
    }
   }
-  stage('Test') {
+  /*stage('Test') {
    steps {
     sh 'mvn Test  '
    }
-  }
+  }*/
 
  /* stage('cleanup') {
    steps {
