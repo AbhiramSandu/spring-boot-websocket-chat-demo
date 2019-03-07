@@ -1,5 +1,6 @@
 pipeline {
  environment {
+  SONAR_HOST_URL='http://54.186.220.191:9000/'
   registry = 'venkatadri/dokerzied_springboot_pipeline'
   registryCredential = 'dockerhub'
   dockerImage = ''
@@ -29,7 +30,7 @@ pipeline {
   }
   stage('StaticCode Analysis') {
    steps {
-    sh "mvn sonar:sonar "
+    sh "mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL"
    }
   }
 
