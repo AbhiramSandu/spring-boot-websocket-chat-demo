@@ -14,18 +14,23 @@ pipeline {
 
   stage('Build') {
    steps {
-    sh 'mvn clean package'
+    sh "mvn clean package"
    }
   }
-  /*stage('Test') {
+  stage('UnitTest') {
    steps {
-    sh 'mvn Test  '
+    sh "mvn test"
    }
-  }*/
+   post {
+    always {
+     junit 'target/surefire-reports/*.xml'
+    }
+   }
+  }
 
   stage('cleanup') {
    steps {
-    
+     
     sh 'docker stop chat-app'
     sh 'docker rm chat-app'
     //sh 'docker rmi -f $registry'
