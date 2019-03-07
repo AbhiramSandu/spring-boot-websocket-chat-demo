@@ -1,6 +1,6 @@
 pipeline {
  environment {
-  SONAR_HOST_URL='http://54.186.220.191:9000/'
+  SONAR_HOST_URL='http://54.68.58.133:9000/'
   registry = 'venkatadri/dokerzied_springboot_pipeline'
   registryCredential = 'dockerhub'
   dockerImage = ''
