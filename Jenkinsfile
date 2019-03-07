@@ -23,6 +23,13 @@ pipeline {
    }
   }*/
 
+  stage('cleanup') {
+   steps {
+    sh 'docker stop chat-app'
+    sh 'docker rm chat-app'
+    //sh 'docker rmi -f $registry'
+   }
+  }
   stage('Building image') {
    steps {
     script {
@@ -31,13 +38,7 @@ pipeline {
    }
   }
 
-  stage('cleanup') {
-   steps {
-    sh 'docker stop chat-app'
-    sh 'docker rm chat-app'
-    //sh 'docker rmi -f $registry'
-   }
-  }
+  
   stage('Run Container') {
    steps {
     sh 'docker run --name=chat-app -d -p 5000:8080 $registry:$BUILD_NUMBER &'
