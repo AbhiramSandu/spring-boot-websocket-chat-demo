@@ -67,6 +67,7 @@ pipeline {
    }
   }
   stage('Deploy the application') {
+   steps{
    //Deploying the docker image as the service using kubernets cd plug in
    //mehtod to deploy the ymal file
    kubernetesDeploy(
@@ -74,6 +75,7 @@ pipeline {
     configs: 'Application.yml',
     enableConfigSubstitution: false
    )
+   }
 
 
 
