@@ -1,0 +1,34 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sbapps
+  namespace: euc-ns
+spec:
+  selector:
+    app: sbapps
+  ports:
+  - protocol: TCP
+    port: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sbapps
+  namespace: euc-ns
+spec:
+  selector:
+      matchLabels:
+        app: sbapps
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: sbapps
+    spec:
+      containers:
+        - name: sbapps
+          image: venkatadri/dokerzied_springboot_pipeline:24
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
