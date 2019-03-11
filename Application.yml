@@ -1,5 +1,5 @@
 kind: Service
-apiVersion: v1
+apiVersion: extensions/v1beta1
 metadata:
   name: sbapps
   namespace: euc-ns
@@ -11,7 +11,7 @@ spec:
     port: 8080
   type: NodePort
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: sbapps
