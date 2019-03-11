@@ -1,6 +1,6 @@
 pipeline {
  environment {
- // SONAR_HOST_URL='http://54.68.58.133:9000/'
+  // SONAR_HOST_URL='http://54.68.58.133:9000/'
   registry = 'venkatadri/dokerzied_springboot_pipeline'
   registryCredential = 'dockerhub'
   dockerImage = ''
@@ -37,7 +37,7 @@ pipeline {
 
   stage('cleanup') {
    steps {
-     
+
     sh 'docker stop chat-app'
     sh 'docker rm chat-app'
     //sh 'docker rmi -f $registry'
@@ -51,12 +51,12 @@ pipeline {
    }
   }
 
- /* no need to enable it when you are using kubernetes (Application.ymal file)
-  stage('Run Container') {
-   steps {
-    sh 'docker run --name=chat-app -d -p 5000:8080 $registry:$BUILD_NUMBER &'
-   }
-  }*/
+  /* no need to enable it when you are using kubernetes (Application.ymal file)
+   stage('Run Container') {
+    steps {
+     sh 'docker run --name=chat-app -d -p 5000:8080 $registry:$BUILD_NUMBER &'
+    }
+   }*/
   stage('push image') {
    steps {
     script {
@@ -66,17 +66,17 @@ pipeline {
     }
    }
   }
-  stage('Deploy the application'){
-      //Deploying the docker image as the service using kubernets cd plug in
-      //mehtod to deploy the ymal file
-      kubernetesDeploy(
-          kubeconfigId:'kubeconfig',
-          configs:'Application.yml',
-          enableConfigSubstitution:false
-          )
-    
-          
-      
-      }
+  stage('Deploy the application') {
+   //Deploying the docker image as the service using kubernets cd plug in
+   //mehtod to deploy the ymal file
+   kubernetesDeploy(
+    kubeconfigId: 'kubeconfig',
+    configs: 'Application.yml',
+    enableConfigSubstitution: false
+   )
+
+
+
   }
  }
+}
