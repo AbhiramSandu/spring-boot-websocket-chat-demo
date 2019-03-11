@@ -2,7 +2,9 @@ pipeline {
  environment {
   // SONAR_HOST_URL='http://54.68.58.133:9000/'
   registry = 'venkatadri/dokerzied_springboot_pipeline'
-  registryCredential = 'dockerhub'
+  
+  //it shoud map to jenkins credentiala
+  registryCredential = 'dokerhubvenkat'
   dockerImage = ''
   containerId = sh(script: 'docker ps -aqf "name=chat-app"', returnStdout: true)
  }
